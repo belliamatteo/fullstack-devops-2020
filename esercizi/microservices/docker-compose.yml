@@ -19,3 +19,14 @@ services:
       - "traefik.http.routers.microservice-template-cmyktohsl.middlewares=microservice-template-cmyktohsl-stripprefix"
       - "traefik.http.services.microservice-template-cmyktohsl.loadbalancer.server.port=3000"
       - "traefik.http.middlewares.microservice-template-cmyktohsl-stripprefix.stripprefix.prefixes=/microservice-template-cmyktohsl"
+  
+
+  microservice-template-cmyktohex:
+    build: microservice-template-cmyktohex
+    restart: "no"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.microservice-template-cmyktohex.rule=PathPrefix(`/microservice-template-cmyktohex`)"
+      - "traefik.http.routers.microservice-template-cmyktohex.middlewares=microservice-template-cmyktohex-stripprefix"
+      - "traefik.http.services.microservice-template-cmyktohex.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.microservice-template-cmyktohex-stripprefix.stripprefix.prefixes=/microservice-template-cmyktohex"
