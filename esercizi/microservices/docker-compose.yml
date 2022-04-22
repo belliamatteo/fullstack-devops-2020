@@ -40,3 +40,13 @@ services:
       - "traefik.http.routers.microservice-template-cmyktorgb.middlewares=microservice-template-cmyktorgb-stripprefix"
       - "traefik.http.services.microservice-template-cmyktorgb.loadbalancer.server.port=3000"
       - "traefik.http.middlewares.microservice-template-cmyktorgb-stripprefix.stripprefix.prefixes=/microservice-template-cmyktorgb"
+  
+  microservice-template-hsltocmyk:
+    build: microservice-template-hsltocmyk
+    restart: "no"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.microservice-template-hsltocmyk.rule=PathPrefix(`/microservice-template-hsltocmyk`)"
+      - "traefik.http.routers.microservice-template-hsltocmyk.middlewares=microservice-template-hsltocmyk-stripprefix"
+      - "traefik.http.services.microservice-template-hsltocmyk.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.microservice-template-hsltocmyk-stripprefix.stripprefix.prefixes=/microservice-template-hsltocmyk"
