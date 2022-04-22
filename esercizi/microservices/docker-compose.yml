@@ -30,3 +30,13 @@ services:
       - "traefik.http.routers.microservice-template-cmyktohex.middlewares=microservice-template-cmyktohex-stripprefix"
       - "traefik.http.services.microservice-template-cmyktohex.loadbalancer.server.port=3000"
       - "traefik.http.middlewares.microservice-template-cmyktohex-stripprefix.stripprefix.prefixes=/microservice-template-cmyktohex"
+  
+  microservice-template-cmyktorgb:
+    build: microservice-template-cmyktorgb
+    restart: "no"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.microservice-template-cmyktorgb.rule=PathPrefix(`/microservice-template-cmyktorgb`)"
+      - "traefik.http.routers.microservice-template-cmyktorgb.middlewares=microservice-template-cmyktorgb-stripprefix"
+      - "traefik.http.services.microservice-template-cmyktorgb.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.microservice-template-cmyktorgb-stripprefix.stripprefix.prefixes=/microservice-template-cmyktorgb"
