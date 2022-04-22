@@ -1,0 +1,21 @@
+version: '3'
+services:
+  reverse-proxy:
+    image: traefik
+    command: --api.insecure=true --providers.docker --providers.docker.exposedByDefault=false
+    restart: "no"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  microservice-template-cmyktohsl:
+    build: microservice-template-cmyktohsl
+    restart: "no"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.microservice-template-cmyktohsl.rule=PathPrefix(`/microservice-template-cmyktohsl`)"
+      - "traefik.http.routers.microservice-template-cmyktohsl.middlewares=microservice-template-cmyktohsl-stripprefix"
+      - "traefik.http.services.microservice-template-cmyktohsl.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.microservice-template-cmyktohsl-stripprefix.stripprefix.prefixes=/microservice-template-cmyktohsl"

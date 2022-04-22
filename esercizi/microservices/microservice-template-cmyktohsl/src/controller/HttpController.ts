@@ -1,11 +1,12 @@
-import {convert} from '../service/Service';
+import {CmykToHsl} from '../service/Service';
 import {Express} from 'express';
 
 class HttpController {
     constructor(server: Express) {
         server.get('/', (req, res) => {
-            const color = JSON.parse(req.query.color) as ColorModel;
-            const convertedColor: ColorModel = convert(color);
+            console.log(req.query.color);
+            const color = (req.query.color as any);
+            const convertedColor = CmykToHsl(color);
 
             res.send(convertedColor);
         });
